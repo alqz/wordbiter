@@ -3,7 +3,7 @@ Unit tests for the find_all_words function.
 """
 
 from typing import List, Set
-from word_finder import find_all_words
+from wordbiter.word_finder import find_all_words
 
 
 def create_simple_dictionary() -> Set[str]:

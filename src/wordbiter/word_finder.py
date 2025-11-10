@@ -2,7 +2,7 @@
 Core word-finding algorithm for Word Bites AI.
 """
 
-from typing import Dict, List, Set, Literal
+from typing import Dict, List, Set, Literal, Tuple
 
 Orientation = Literal["horizontal", "vertical"]
 
@@ -11,7 +11,7 @@ def get_tile_views(
     single_tiles: List[str],
     horizontal_tiles: List[str],
     vertical_tiles: List[str]
-) -> Dict[str, tuple[List[str], List[int]]]:
+) -> Dict[str, Tuple[List[str], List[int]]]:
     """
     Generate horizontal and vertical views of tiles based on their orientations.
 

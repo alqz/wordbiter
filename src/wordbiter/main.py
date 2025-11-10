@@ -5,8 +5,8 @@ Given a set of tiles (each containing one or more letters), find all valid words
 
 import argparse
 from typing import List
-from dictionary import load_dictionary
-from word_finder import solve_word_bites
+from .dictionary import load_dictionary
+from .word_finder import solve_word_bites
 
 
 def main() -> None:

@@ -2,18 +2,23 @@
 Tests for the get_tile_views function.
 """
 
-from word_finder import get_tile_views
+from typing import List
+from wordbiter.word_finder import get_tile_views
 
 
 def test_only_single_tiles() -> None:
     """Test with only single-letter tiles."""
-    single_tiles = ["A", "E", "C"]
-    horizontal_tiles = []
-    vertical_tiles = []
+    single_tiles: List[str] = ["A", "E", "C"]
+    horizontal_tiles: List[str] = []
+    vertical_tiles: List[str] = []
 
     result = get_tile_views(single_tiles, horizontal_tiles, vertical_tiles)
 
+    h_tiles: List[str]
+    h_groups: List[int]
     h_tiles, h_groups = result['horizontal']
+    v_tiles: List[str]
+    v_groups: List[int]
     v_tiles, v_groups = result['vertical']
 
     assert h_tiles == ["A", "E", "C"]
@@ -25,13 +30,17 @@ def test_only_single_tiles() -> None:
 
 def test_only_horizontal_tiles() -> None:
     """Test with only horizontal tiles."""
-    single_tiles = []
-    horizontal_tiles = ["TE", "FL"]
-    vertical_tiles = []
+    single_tiles: List[str] = []
+    horizontal_tiles: List[str] = ["TE", "FL"]
+    vertical_tiles: List[str] = []
 
     result = get_tile_views(single_tiles, horizontal_tiles, vertical_tiles)
 
+    h_tiles: List[str]
+    h_groups: List[int]
     h_tiles, h_groups = result['horizontal']
+    v_tiles: List[str]
+    v_groups: List[int]
     v_tiles, v_groups = result['vertical']
 
     assert h_tiles == ["TE", "FL"]
@@ -45,13 +54,17 @@ def test_only_horizontal_tiles() -> None:
 
 def test_only_vertical_tiles() -> None:
     """Test with only vertical tiles."""
-    single_tiles = []
-    horizontal_tiles = []
-    vertical_tiles = ["UB", "IS"]
+    single_tiles: List[str] = []
+    horizontal_tiles: List[str] = []
+    vertical_tiles: List[str] = ["UB", "IS"]
 
     result = get_tile_views(single_tiles, horizontal_tiles, vertical_tiles)
 
+    h_tiles: List[str]
+    h_groups: List[int]
     h_tiles, h_groups = result['horizontal']
+    v_tiles: List[str]
+    v_groups: List[int]
     v_tiles, v_groups = result['vertical']
 
     assert h_tiles == ["U", "B", "I", "S"]
@@ -65,13 +78,17 @@ def test_only_vertical_tiles() -> None:
 
 def test_mixed_tiles() -> None:
     """Test with a mix of all tile types."""
-    single_tiles = ["A", "E", "C"]
-    horizontal_tiles = ["TE", "FL"]
-    vertical_tiles = ["UB", "IS"]
+    single_tiles: List[str] = ["A", "E", "C"]
+    horizontal_tiles: List[str] = ["TE", "FL"]
+    vertical_tiles: List[str] = ["UB", "IS"]
 
     result = get_tile_views(single_tiles, horizontal_tiles, vertical_tiles)
 
+    h_tiles: List[str]
+    h_groups: List[int]
     h_tiles, h_groups = result['horizontal']
+    v_tiles: List[str]
+    v_groups: List[int]
     v_tiles, v_groups = result['vertical']
 
     # Horizontal view: single tiles + horizontal tiles (intact) + vertical tiles (split)
@@ -88,13 +105,17 @@ def test_mixed_tiles() -> None:
 
 def test_empty_tiles() -> None:
     """Test with all empty lists."""
-    single_tiles = []
-    horizontal_tiles = []
-    vertical_tiles = []
+    single_tiles: List[str] = []
+    horizontal_tiles: List[str] = []
+    vertical_tiles: List[str] = []
 
     result = get_tile_views(single_tiles, horizontal_tiles, vertical_tiles)
 
+    h_tiles: List[str]
+    h_groups: List[int]
     h_tiles, h_groups = result['horizontal']
+    v_tiles: List[str]
+    v_groups: List[int]
     v_tiles, v_groups = result['vertical']
 
     assert h_tiles == []
@@ -106,13 +127,17 @@ def test_empty_tiles() -> None:
 
 def test_three_letter_tiles() -> None:
     """Test with multi-letter tiles (3+ letters)."""
-    single_tiles = []
-    horizontal_tiles = ["ABC"]
-    vertical_tiles = ["XYZ"]
+    single_tiles: List[str] = []
+    horizontal_tiles: List[str] = ["ABC"]
+    vertical_tiles: List[str] = ["XYZ"]
 
     result = get_tile_views(single_tiles, horizontal_tiles, vertical_tiles)
 
+    h_tiles: List[str]
+    h_groups: List[int]
     h_tiles, h_groups = result['horizontal']
+    v_tiles: List[str]
+    v_groups: List[int]
     v_tiles, v_groups = result['vertical']
 
     assert h_tiles == ["ABC", "X", "Y", "Z"]
@@ -126,13 +151,17 @@ def test_three_letter_tiles() -> None:
 
 def test_real_game_scenario() -> None:
     """Test with a realistic game scenario."""
-    single_tiles = ["E", "V", "N", "Y", "R", "A", "C", "H"]
-    horizontal_tiles = ["UB", "TE", "FL", "IS"]
-    vertical_tiles = []
+    single_tiles: List[str] = ["E", "V", "N", "Y", "R", "A", "C", "H"]
+    horizontal_tiles: List[str] = ["UB", "TE", "FL", "IS"]
+    vertical_tiles: List[str] = []
 
     result = get_tile_views(single_tiles, horizontal_tiles, vertical_tiles)
 
+    h_tiles: List[str]
+    h_groups: List[int]
     h_tiles, h_groups = result['horizontal']
+    v_tiles: List[str]
+    v_groups: List[int]
     v_tiles, v_groups = result['vertical']
 
     # Horizontal view

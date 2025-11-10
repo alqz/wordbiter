@@ -4,7 +4,7 @@ from the same source tile in a single word.
 """
 
 from typing import List, Set
-from word_finder import solve_word_bites
+from wordbiter.word_finder import solve_word_bites
 
 
 def test_horizontal_tile_letters_mutually_exclusive_in_vertical_words() -> None:

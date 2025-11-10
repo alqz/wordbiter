@@ -3,8 +3,8 @@ Test cases for Word Bites AI.
 """
 
 from typing import Dict, List
-from dictionary import load_dictionary
-from word_finder import solve_word_bites
+from wordbiter.dictionary import load_dictionary
+from wordbiter.word_finder import solve_word_bites
 
 
 def test_word_bites() -> None:
