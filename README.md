@@ -1,2 +1,2 @@
-# wordhunter
-Solver for Word Hunt
+# wordbiter
+Solver for Word Bites
