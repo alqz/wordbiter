@@ -32,6 +32,12 @@ def main() -> None:
         default=None,
         help="Only find words in one direction: 'h' for horizontal only, 'v' for vertical only (default: both directions)"
     )
+    parser.add_argument(
+        "--dictionary",
+        type=str,
+        default="/usr/share/dict/words",
+        help="Path to list of words"
+    )
     args = parser.parse_args()
 
     print("=" * 50)
@@ -40,7 +46,7 @@ def main() -> None:
 
     # Load dictionary
     print("\nLoading dictionary...")
-    dictionary = load_dictionary()
+    dictionary = load_dictionary(args.dictionary)
     print(f"Loaded {len(dictionary)} words")
 
     # Get tiles from user
