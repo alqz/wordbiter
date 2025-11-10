@@ -1,8 +1,11 @@
 """
-Dictionary loading utilities for Word Hunt AI.
+Dictionary loading utilities for Word Bites AI.
 """
 
 from typing import Set
+
+# Minimum word length to include in dictionary
+MIN_WORD_LENGTH = 3
 
 
 def load_dictionary(file_path: str = "/usr/share/dict/words") -> Set[str]:
@@ -10,7 +13,11 @@ def load_dictionary(file_path: str = "/usr/share/dict/words") -> Set[str]:
     try:
         with open(file_path, 'r') as f:
             # Convert to uppercase and filter by minimum length
-            words: Set[str] = {line.strip().upper() for line in f if len(line.strip()) >= 3}
+            words: Set[str] = {
+                stripped.upper()
+                for line in f
+                if len(stripped := line.strip()) >= MIN_WORD_LENGTH
+            }
         return words
     except FileNotFoundError:
         print(f"Dictionary file not found at {file_path}")

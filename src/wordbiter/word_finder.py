@@ -2,9 +2,24 @@
 Core word-finding algorithm for Word Bites AI.
 """
 
-from typing import Dict, List, Set, Literal, Tuple
+from typing import Dict, List, Set, Tuple
 
-Orientation = Literal["horizontal", "vertical"]
+
+def build_prefix_set(dictionary: Set[str]) -> Set[str]:
+    """
+    Build a set of all prefixes from the dictionary for efficient pruning.
+
+    Args:
+        dictionary: Set of valid dictionary words (uppercase)
+
+    Returns:
+        Set of all prefixes that exist in the dictionary
+    """
+    prefixes: Set[str] = set()
+    for word in dictionary:
+        for i in range(1, len(word) + 1):
+            prefixes.add(word[:i])
+    return prefixes
 
 
 def get_tile_views(
@@ -78,6 +93,7 @@ def find_all_words(
     tiles: List[str],
     groups: List[int],
     dictionary: Set[str],
+    prefixes: Set[str],
     min_length: int = 3,
     max_length: int = 9
 ) -> List[str]:
@@ -89,19 +105,25 @@ def find_all_words(
         tiles: List of tiles, where each tile contains one or more letters
         groups: List of group IDs where tiles with the same ID are mutually exclusive
         dictionary: Set of valid dictionary words (uppercase)
+        prefixes: Set of all valid prefixes from dictionary (for pruning)
         min_length: Minimum word length (default: 3)
         max_length: Maximum word length (default: 9)
 
     Returns:
         Sorted list of all valid words found
     """
-    valid_words: Set[str] = set()
+    # Validate inputs
+    if len(tiles) != len(groups):
+        raise ValueError(f"tiles and groups must have same length: {len(tiles)} != {len(groups)}")
+    if min_length < 1:
+        raise ValueError(f"min_length must be >= 1, got {min_length}")
+    if max_length < min_length:
+        raise ValueError(f"max_length ({max_length}) must be >= min_length ({min_length})")
 
-    # Build a set of all prefixes in the dictionary for pruning
-    prefixes: Set[str] = set()
-    for word in dictionary:
-        for i in range(1, len(word) + 1):
-            prefixes.add(word[:i])
+    # Uppercase all tiles once at the start
+    tiles_upper = [tile.upper() for tile in tiles]
+
+    valid_words: Set[str] = set()
 
     def backtrack(current_word: str, used_indices: Set[int], used_groups: Set[int]) -> None:
         """Recursively build words using available tiles."""
@@ -118,11 +140,11 @@ def find_all_words(
             valid_words.add(current_word)
 
         # Try adding each unused tile
-        for i in range(len(tiles)):
+        for i in range(len(tiles_upper)):
             tile_group = groups[i]
             # Can only use this tile if we haven't used its index or any tile from its group
             if i not in used_indices and tile_group not in used_groups:
-                new_word = current_word + tiles[i].upper()
+                new_word = current_word + tiles_upper[i]
                 new_used_indices = used_indices | {i}
                 new_used_groups = used_groups | {tile_group}
                 backtrack(new_word, new_used_indices, new_used_groups)
@@ -158,6 +180,9 @@ def solve_word_bites(
     Returns:
         Dictionary with 'horizontal' and 'vertical' keys, each containing a list of valid words
     """
+    # Build prefix set once for efficiency (reused for both orientations)
+    prefixes = build_prefix_set(dictionary)
+
     # Get the tile views for horizontal and vertical orientations
     views = get_tile_views(single_tiles, horizontal_tiles, vertical_tiles)
 
@@ -169,12 +194,12 @@ def solve_word_bites(
 
     # Find words for horizontal orientation (max 8 letters)
     horizontal_words = find_all_words(
-        horizontal_tiles_view, horizontal_groups, dictionary, min_length, max_horizontal_length
+        horizontal_tiles_view, horizontal_groups, dictionary, prefixes, min_length, max_horizontal_length
     )
 
     # Find words for vertical orientation (max 9 letters)
     vertical_words = find_all_words(
-        vertical_tiles_view, vertical_groups, dictionary, min_length, max_vertical_length
+        vertical_tiles_view, vertical_groups, dictionary, prefixes, min_length, max_vertical_length
     )
 
     return {

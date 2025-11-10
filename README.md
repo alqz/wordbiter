@@ -116,12 +116,6 @@ Run the solver interactively to input your game tiles:
 python3 run.py
 ```
 
-Or if you've set up PYTHONPATH:
-
-```bash
-python3 -m src.wordbiter.main
-```
-
 ### Command-Line Options
 
 ```bash
@@ -148,13 +142,13 @@ Loading dictionary...
 Loaded 235,886 words
 
 --------------------------------------------------
-Enter single-letter tiles (comma-separated, or leave blank):
-Single tiles: A, E, T
+Enter single-letter tiles (space-separated, or leave blank):
+Single tiles: A E T
 
-Enter horizontal multi-letter tiles (comma-separated, or leave blank):
-Horizontal tiles: AB, CD
+Enter horizontal multi-letter tiles (space-separated, or leave blank):
+Horizontal tiles: AB CD
 
-Enter vertical multi-letter tiles (comma-separated, or leave blank):
+Enter vertical multi-letter tiles (space-separated, or leave blank):
 Vertical tiles: RT
 
 Configuration:
@@ -268,18 +262,6 @@ Run the test suite using the provided script:
 ./run_tests.sh
 ```
 
-Or run individual test files:
-
-```bash
-PYTHONPATH=src python3 tests/test_find_all_words.py
-```
-
-With pytest (if installed):
-
-```bash
-PYTHONPATH=src pytest tests/
-```
-
 ### Running Type Checks
 
 If you have mypy installed:
@@ -351,14 +333,8 @@ Contributions are welcome! Please ensure:
 
 ### "ModuleNotFoundError: No module named 'wordbiter'"
 
-Set the PYTHONPATH before running:
-
-```bash
-export PYTHONPATH=/path/to/wordbiter/src:$PYTHONPATH
-```
-
-Or use the provided runner scripts:
-- `./run.py` for the main program
+Use the provided runner scripts:
+- `python3 run.py` for the main program
 - `./run_tests.sh` for tests
 
 ### "Dictionary file not found"
