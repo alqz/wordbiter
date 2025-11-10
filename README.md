@@ -149,12 +149,12 @@ python3 run.py [OPTIONS]
 If you're not sure what to enter, try these sample tiles:
 
 ```
-Single tiles: S C Y B N B
+Single tiles: S C Y B N G
 Horizontal tiles: AL UR KI AT
 Vertical tiles: ME
 ```
 
-This will find words like NATURALLY, ABNORMALITY, URBANE, and many others!
+This will find words like CALKINGS, NATURALS, BRACINGLY, MEGABUCKS, and many others!
 
 ### Example Session
 
@@ -260,7 +260,7 @@ The web interface provides a user-friendly form for entering tiles and viewing r
    - Each column is independently scrollable
 
 **Try this example** if you're not sure what to enter:
-- Single tiles: `S C Y B N B`
+- Single tiles: `S C Y B N G`
 - Horizontal tiles: `AL UR KI AT`
 - Vertical tiles: `ME`
 
@@ -333,13 +333,13 @@ wordbiter/
 ### Example 1: Quick Start Game
 
 **Input:**
-- Single tiles: `S C Y B N B`
+- Single tiles: `S C Y B N G`
 - Horizontal tiles: `AL UR KI AT`
 - Vertical tiles: `ME`
 
 **Sample Results:**
-- Long horizontal words: `NATURALLY`, `ABNORMALITY`, `URBANITY`, `SANCTUARY`
-- Long vertical words: `URBANE`, `BINARY`, `SATINY`, `CREAMY`
+- Long horizontal words: `CALKINGS`, `NATURALS`, `NATURAL`, `BALKING`, `URGENCY`
+- Long vertical words: `BRACINGLY`, `GRAYBACKS`, `MEALYBUGS`, `MEGABUCKS`, `TUMESCING`
 
 This is a great example to try if you're new to the solver!
 
