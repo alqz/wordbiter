@@ -1,0 +1,8 @@
+# Web server dependencies for Milestone 2
+Flask==3.0.0
+Werkzeug==3.0.1
+
+# Optional: Development and testing dependencies
+# Uncomment if needed:
+# pytest==7.4.3
+# mypy==1.7.1

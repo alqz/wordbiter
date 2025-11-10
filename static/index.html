@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Bites AI Solver - Milestone 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Word Bites AI Solver</h1>
+            <p class="subtitle">Find all valid words from your letter tiles</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>Enter Your Tiles</h2>
+
+                <form id="tiles-form">
+                    <div class="form-group">
+                        <label for="single-tiles">
+                            Single-Letter Tiles
+                            <span class="help-text">Space-separated letters (e.g., A E T R)</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="single-tiles"
+                            name="single-tiles"
+                            placeholder="A E T R S"
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horizontal-tiles">
+                            Horizontal Multi-Letter Tiles
+                            <span class="help-text">Space-separated tiles that stay together horizontally (e.g., AB CD RT)</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="horizontal-tiles"
+                            name="horizontal-tiles"
+                            placeholder="AB CD RT"
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vertical-tiles">
+                            Vertical Multi-Letter Tiles
+                            <span class="help-text">Space-separated tiles that stay together vertically (e.g., CO MP ER)</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="vertical-tiles"
+                            name="vertical-tiles"
+                            placeholder="CO MP ER"
+                            autocomplete="off"
+                        >
+                    </div>
+
+                    <div class="options-section">
+                        <h3>Options</h3>
+
+                        <div class="form-row">
+                            <div class="form-group small">
+                                <label for="max-horizontal">Max Horizontal Length</label>
+                                <input
+                                    type="number"
+                                    id="max-horizontal"
+                                    name="max-horizontal"
+                                    value="8"
+                                    min="3"
+                                    max="20"
+                                >
+                            </div>
+
+                            <div class="form-group small">
+                                <label for="max-vertical">Max Vertical Length</label>
+                                <input
+                                    type="number"
+                                    id="max-vertical"
+                                    name="max-vertical"
+                                    value="9"
+                                    min="3"
+                                    max="20"
+                                >
+                            </div>
+
+                            <div class="form-group small">
+                                <label for="direction">Direction Filter</label>
+                                <select id="direction" name="direction">
+                                    <option value="both">Both</option>
+                                    <option value="h">Horizontal Only</option>
+                                    <option value="v">Vertical Only</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="solve-button" class="btn-primary">
+                        Find Words
+                    </button>
+                </form>
+            </section>
+
+            <section class="results-section" id="results-section" style="display: none;">
+                <h2>Results</h2>
+
+                <div class="stats" id="stats"></div>
+
+                <div class="results-container">
+                    <div class="results-column" id="horizontal-results">
+                        <h3>Horizontal Words</h3>
+                        <div class="word-count" id="horizontal-count"></div>
+                        <div class="word-list" id="horizontal-list"></div>
+                    </div>
+
+                    <div class="results-column" id="vertical-results">
+                        <h3>Vertical Words</h3>
+                        <div class="word-count" id="vertical-count"></div>
+                        <div class="word-list" id="vertical-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="error-section" id="error-section" style="display: none;">
+                <div class="error-message" id="error-message"></div>
+            </section>
+
+            <section class="loading-section" id="loading-section" style="display: none;">
+                <div class="spinner"></div>
+                <p>Finding words...</p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="game-rules">
+                <h3>How It Works</h3>
+                <ul>
+                    <li><strong>Single-letter tiles:</strong> Can be used in any direction</li>
+                    <li><strong>Horizontal tiles:</strong> Stay together horizontally, split for vertical words</li>
+                    <li><strong>Vertical tiles:</strong> Stay together vertically, split for horizontal words</li>
+                    <li><strong>Group exclusion:</strong> Can't use multiple letters from the same split tile in one word</li>
+                    <li><strong>Minimum length:</strong> 3 letters per word</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

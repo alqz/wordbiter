@@ -2,6 +2,8 @@
 
 A Python-based solver for the Word Bites word puzzle game that finds all valid words that can be formed from a given set of letter tiles.
 
+**Milestone 2** includes a browser-based web interface for easy tile input and results visualization.
+
 ## Table of Contents
 
 - [About Word Bites](#about-word-bites)
@@ -9,6 +11,8 @@ A Python-based solver for the Word Bites word puzzle game that finds all valid w
 - [How This Solver Works](#how-this-solver-works)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Milestone 1: Command-Line Interface](#milestone-1-command-line-interface)
+  - [Milestone 2: Web Interface](#milestone-2-web-interface)
 - [Project Structure](#project-structure)
 - [Examples](#examples)
 - [Development](#development)
@@ -83,7 +87,8 @@ In practice, the solver is very fast due to aggressive pruning.
 ### Prerequisites
 
 - Python 3.8 or higher
-- Standard library only (no external dependencies required)
+- For **Milestone 1** (CLI): Standard library only (no external dependencies required)
+- For **Milestone 2** (Web): Flask and dependencies (see requirements.txt)
 
 ### Setup
 
@@ -93,13 +98,18 @@ git clone <repository-url>
 cd wordbiter
 ```
 
-2. (Optional) Create a virtual environment:
+2. (Optional but recommended) Create a virtual environment:
 ```bash
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. The solver is ready to use! No additional installation needed.
+3. For **Milestone 1** (CLI only): The solver is ready to use! No additional installation needed.
+
+4. For **Milestone 2** (Web interface): Install web dependencies:
+```bash
+pip install -r requirements.txt
+```
 
 For development with type checking, install optional dependencies:
 ```bash
@@ -108,7 +118,9 @@ pip install mypy pytest
 
 ## Usage
 
-### Interactive Mode
+### Milestone 1: Command-Line Interface
+
+#### Interactive Mode
 
 Run the solver interactively to input your game tiles:
 
@@ -116,7 +128,7 @@ Run the solver interactively to input your game tiles:
 python3 run.py
 ```
 
-### Command-Line Options
+#### Command-Line Options
 
 ```bash
 python3 run.py [OPTIONS]
@@ -179,7 +191,7 @@ Showing top 30 longest words (out of 89 total):
   ...
 ```
 
-### Using Custom Dictionaries
+#### Using Custom Dictionaries
 
 The project includes several dictionary files in the `dictionaries/` directory:
 
@@ -194,16 +206,90 @@ python3 run.py --dictionary dictionaries/mit_words.txt
 python3 run.py --dictionary dictionaries/words_alpha.txt
 ```
 
+### Milestone 2: Web Interface
+
+#### Starting the Web Server
+
+1. Make sure you have installed Flask dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+2. Start the web server:
+```bash
+python3 app.py
+```
+
+3. Open your browser and navigate to:
+```
+http://localhost:5001
+```
+
+#### Using the Web Interface
+
+The web interface provides a user-friendly form for entering tiles and viewing results:
+
+1. **Enter Tiles**: Fill in the input fields for single-letter, horizontal, and vertical tiles
+   - Tiles are automatically converted to uppercase
+   - Separate multiple tiles with spaces (e.g., "A E T R")
+
+2. **Configure Options**: Adjust settings as needed
+   - Max horizontal/vertical word length
+   - Direction filter (both, horizontal only, or vertical only)
+
+3. **Find Words**: Click the "Find Words" button to solve the puzzle
+
+4. **View Results**: Results are displayed in two columns
+   - Words are sorted by length (longest first)
+   - Words with 7+ letters are highlighted
+   - Each column is independently scrollable
+
+#### API Endpoints
+
+The web server provides the following API endpoints:
+
+- `GET /` - Serves the web interface
+- `POST /api/solve` - Solves a Word Bites puzzle
+  - Request body: JSON with tiles and configuration
+  - Response: JSON with horizontal and vertical word lists
+- `GET /api/health` - Health check endpoint
+  - Returns server status and dictionary info
+
+#### Architecture
+
+Milestone 2 maintains **modular separation** between components:
+
+- **Frontend** ([static/](static/))
+  - [index.html](static/index.html) - User interface
+  - [style.css](static/style.css) - Styling
+  - [script.js](static/script.js) - Client-side logic
+
+- **Backend API Layer** ([app.py](app.py))
+  - Flask web server
+  - REST API endpoints
+  - Thin wrapper over core solver logic
+
+- **Core Solver** ([src/wordbiter/](src/wordbiter/))
+  - [word_finder.py](src/wordbiter/word_finder.py) - Algorithm implementation
+  - [dictionary.py](src/wordbiter/dictionary.py) - Dictionary management
+  - No dependencies on web layer
+
+This separation ensures the core solver remains reusable and testable independently of the web interface.
+
 ## Project Structure
 
 ```
 wordbiter/
 ├── src/
-│   └── wordbiter/           # Main package
+│   └── wordbiter/           # Main package (core solver)
 │       ├── __init__.py      # Package initialization
-│       ├── main.py          # CLI interface
+│       ├── main.py          # CLI interface (Milestone 1)
 │       ├── word_finder.py   # Core solving algorithm
 │       └── dictionary.py    # Dictionary loading utilities
+├── static/                  # Web frontend (Milestone 2)
+│   ├── index.html           # Web interface HTML
+│   ├── style.css            # Styling
+│   └── script.js            # Client-side JavaScript
 ├── tests/                   # Test suite
 │   ├── test_find_all_words.py
 │   ├── test_group_exclusion.py
@@ -213,9 +299,11 @@ wordbiter/
 │   ├── scrabble_words.txt
 │   ├── words_alpha.txt
 │   └── mit_words.txt
-├── run.py                   # Entry point script
+├── app.py                   # Flask web server (Milestone 2)
+├── run.py                   # CLI entry point (Milestone 1)
 ├── run_tests.sh             # Test runner
 ├── setup.py                 # Package setup
+├── requirements.txt         # Web dependencies (Milestone 2)
 ├── README.md                # This file
 └── LICENSE                  # License information
 ```
