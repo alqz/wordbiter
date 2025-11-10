@@ -59,6 +59,12 @@ def main() -> None:
         help="Only find words in one direction: 'h' for horizontal only, 'v' for vertical only (default: both directions)"
     )
     parser.add_argument(
+        "--min-word-length",
+        type=int,
+        default=DEFAULT_MIN_WORD_LENGTH,
+        help=f"Minimum word length (default: {DEFAULT_MIN_WORD_LENGTH})"
+    )
+    parser.add_argument(
         "--dictionary",
         type=str,
         default="/usr/share/dict/words",
@@ -91,6 +97,7 @@ def main() -> None:
 
     # Display configuration
     print("\nConfiguration:")
+    print(f"  Min word length: {args.min_word_length}")
     print(f"  Max horizontal length: {args.max_horizontal_length}")
     print(f"  Max vertical length: {args.max_vertical_length}")
     if args.only_direction:
@@ -106,7 +113,7 @@ def main() -> None:
         horizontal_tiles,
         vertical_tiles,
         dictionary,
-        min_length=DEFAULT_MIN_WORD_LENGTH,
+        min_length=args.min_word_length,
         max_horizontal_length=args.max_horizontal_length,
         max_vertical_length=args.max_vertical_length
     )

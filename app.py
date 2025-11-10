@@ -62,6 +62,7 @@ def solve():
         "single_tiles": ["A", "E", "T"],
         "horizontal_tiles": ["AB", "CD"],
         "vertical_tiles": ["RT"],
+        "min_length": 3,
         "max_horizontal_length": 8,
         "max_vertical_length": 9,
         "only_direction": null | "h" | "v"
@@ -97,6 +98,7 @@ def solve():
         vertical_tiles = [tile.upper() for tile in data.get('vertical_tiles', [])]
 
         # Extract configuration
+        min_length = data.get('min_length', DEFAULT_MIN_WORD_LENGTH)
         max_horizontal_length = data.get('max_horizontal_length', DEFAULT_MAX_HORIZONTAL_LENGTH)
         max_vertical_length = data.get('max_vertical_length', DEFAULT_MAX_VERTICAL_LENGTH)
         only_direction = data.get('only_direction')
@@ -114,7 +116,7 @@ def solve():
             horizontal_tiles,
             vertical_tiles,
             dictionary,
-            min_length=DEFAULT_MIN_WORD_LENGTH,
+            min_length=min_length,
             max_horizontal_length=max_horizontal_length,
             max_vertical_length=max_vertical_length
         )

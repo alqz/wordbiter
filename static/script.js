@@ -14,6 +14,7 @@ const loadingSection = document.getElementById('loading-section');
 const singleTilesInput = document.getElementById('single-tiles');
 const horizontalTilesInput = document.getElementById('horizontal-tiles');
 const verticalTilesInput = document.getElementById('vertical-tiles');
+const minWordLengthInput = document.getElementById('min-word-length');
 const maxHorizontalInput = document.getElementById('max-horizontal');
 const maxVerticalInput = document.getElementById('max-vertical');
 const directionSelect = document.getElementById('direction');
@@ -138,6 +139,7 @@ async function handleSubmit(event) {
     }
 
     // Get configuration
+    const minWordLength = parseInt(minWordLengthInput.value);
     const maxHorizontal = parseInt(maxHorizontalInput.value);
     const maxVertical = parseInt(maxVerticalInput.value);
     const direction = directionSelect.value;
@@ -147,6 +149,7 @@ async function handleSubmit(event) {
         single_tiles: singleTiles,
         horizontal_tiles: horizontalTiles,
         vertical_tiles: verticalTiles,
+        min_length: minWordLength,
         max_horizontal_length: maxHorizontal,
         max_vertical_length: maxVertical,
         only_direction: direction === 'both' ? null : direction

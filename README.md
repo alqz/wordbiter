@@ -136,12 +136,25 @@ python3 run.py [OPTIONS]
 
 **Available options:**
 
+- `--min-word-length N`: Set minimum word length (default: 3)
 - `--max-horizontal-length N`: Set maximum horizontal word length (default: 8)
 - `--max-vertical-length N`: Set maximum vertical word length (default: 9)
 - `--only-direction h|v`: Find words in only one direction
   - `h`: Horizontal words only
   - `v`: Vertical words only
 - `--dictionary PATH`: Use a custom dictionary file (default: `/usr/share/dict/words`)
+
+#### Quick Start Example
+
+If you're not sure what to enter, try these sample tiles:
+
+```
+Single tiles: S C Y B N B
+Horizontal tiles: AL UR KI AT
+Vertical tiles: ME
+```
+
+This will find words like NATURALLY, ABNORMALITY, URBANE, and many others!
 
 ### Example Session
 
@@ -164,6 +177,7 @@ Enter vertical multi-letter tiles (space-separated, or leave blank):
 Vertical tiles: RT
 
 Configuration:
+  Min word length: 3
   Max horizontal length: 8
   Max vertical length: 9
   Direction: both
@@ -234,6 +248,7 @@ The web interface provides a user-friendly form for entering tiles and viewing r
    - Separate multiple tiles with spaces (e.g., "A E T R")
 
 2. **Configure Options**: Adjust settings as needed
+   - Min word length (default: 3)
    - Max horizontal/vertical word length
    - Direction filter (both, horizontal only, or vertical only)
 
@@ -243,6 +258,11 @@ The web interface provides a user-friendly form for entering tiles and viewing r
    - Words are sorted by length (longest first)
    - Words with 7+ letters are highlighted
    - Each column is independently scrollable
+
+**Try this example** if you're not sure what to enter:
+- Single tiles: `S C Y B N B`
+- Horizontal tiles: `AL UR KI AT`
+- Vertical tiles: `ME`
 
 #### API Endpoints
 
@@ -310,10 +330,23 @@ wordbiter/
 
 ## Examples
 
-### Example 1: Basic Game
+### Example 1: Quick Start Game
 
 **Input:**
-- Single tiles: `A, E, T`
+- Single tiles: `S C Y B N B`
+- Horizontal tiles: `AL UR KI AT`
+- Vertical tiles: `ME`
+
+**Sample Results:**
+- Long horizontal words: `NATURALLY`, `ABNORMALITY`, `URBANITY`, `SANCTUARY`
+- Long vertical words: `URBANE`, `BINARY`, `SATINY`, `CREAMY`
+
+This is a great example to try if you're new to the solver!
+
+### Example 2: Basic Game
+
+**Input:**
+- Single tiles: `A E T`
 - Horizontal tiles: `RD`
 - Vertical tiles: (none)
 
@@ -321,18 +354,18 @@ wordbiter/
 - Horizontal: `TRADE`, `TREAD`, `RATED`, `DATER`
 - Vertical: `ART`, `EAR`, `TEA`, `RAT`
 
-### Example 2: Complex Game
+### Example 3: Complex Game
 
 **Input:**
-- Single tiles: `S, I, N`
-- Horizontal tiles: `TA, ER`
-- Vertical tiles: `CO, MP`
+- Single tiles: `S I N`
+- Horizontal tiles: `TA ER`
+- Vertical tiles: `CO MP`
 
 **Search Strategy:**
 - Horizontal view: `[S, I, N, TA, E, R, C, O, M, P]`
 - Vertical view: `[S, I, N, T, A, CO, E, R, MP]`
 
-### Example 3: Vertical Words Only
+### Example 4: Vertical Words Only
 
 ```bash
 python3 run.py --only-direction v
