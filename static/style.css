@@ -316,7 +316,7 @@ h3 {
 }
 
 .word-list {
-    max-height: 500px;
+    max-height: 1000px;
     overflow-y: auto;
     padding-right: 0.5rem;
 }

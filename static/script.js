@@ -373,12 +373,10 @@ function init() {
         .then(() => {
             console.log('Dictionary preloaded and ready');
             showStatus(`Dictionary loaded: ${dictionary.size.toLocaleString()} words ready`, 'success');
-            setTimeout(hideStatus, 3000); // Hide after 3 seconds
         })
         .catch(error => {
             console.warn('Dictionary preload failed (will load on first use):', error);
             showStatus('Dictionary preload failed. It will load on first use.', 'error');
-            setTimeout(hideStatus, 5000); // Hide after 5 seconds
         });
 
     // Check API health (for server mode)
