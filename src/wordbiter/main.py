@@ -1,5 +1,5 @@
 """
-Word Bites - Milestone 1
+Word Bites - CLI Interface
 Given a set of tiles (each containing one or more letters), find all valid words.
 """
 
@@ -73,7 +73,7 @@ def main() -> None:
     args = parser.parse_args()
 
     print("=" * SEPARATOR_WIDTH)
-    print("Word Bites - Milestone 1")
+    print("Word Bites Solver")
     print("=" * SEPARATOR_WIDTH)
 
     # Load dictionary

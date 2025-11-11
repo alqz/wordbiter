@@ -2,7 +2,7 @@
 
 A Python-based solver for the Word Bites word puzzle game that finds all valid words that can be formed from a given set of letter tiles.
 
-**Milestone 2** includes a browser-based web interface for easy tile input and results visualization.
+Includes both a command-line interface and a browser-based web interface for easy tile input and results visualization.
 
 ## Table of Contents
 
@@ -11,8 +11,8 @@ A Python-based solver for the Word Bites word puzzle game that finds all valid w
 - [How This Solver Works](#how-this-solver-works)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Milestone 1: Command-Line Interface](#milestone-1-command-line-interface)
-  - [Milestone 2: Web Interface](#milestone-2-web-interface)
+  - [Command-Line Interface](#command-line-interface)
+  - [Web Interface](#web-interface)
 - [Project Structure](#project-structure)
 - [Examples](#examples)
 - [Development](#development)
@@ -87,8 +87,8 @@ In practice, the solver is very fast due to aggressive pruning.
 ### Prerequisites
 
 - Python 3.8 or higher
-- For **Milestone 1** (CLI): Standard library only (no external dependencies required)
-- For **Milestone 2** (Web): Flask and dependencies (see requirements.txt)
+- For CLI: Standard library only (no external dependencies required)
+- For Web interface: Flask and dependencies (see requirements.txt)
 
 ### Setup
 
@@ -104,9 +104,9 @@ python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. For **Milestone 1** (CLI only): The solver is ready to use! No additional installation needed.
+3. For CLI only: The solver is ready to use! No additional installation needed.
 
-4. For **Milestone 2** (Web interface): Install web dependencies:
+4. For Web interface: Install web dependencies:
 ```bash
 pip install -r requirements.txt
 ```
@@ -118,7 +118,7 @@ pip install mypy pytest
 
 ## Usage
 
-### Milestone 1: Command-Line Interface
+### Command-Line Interface
 
 #### Interactive Mode
 
@@ -160,7 +160,7 @@ This will find words like CALKINGS, NATURALS, BRACINGLY, MEGABUCKS, and many oth
 
 ```
 ==================================================
-Word Bites - Milestone 1
+Word Bites Solver
 ==================================================
 
 Loading dictionary...
@@ -220,7 +220,7 @@ python3 run.py --dictionary dictionaries/mit_words.txt
 python3 run.py --dictionary dictionaries/words_alpha.txt
 ```
 
-### Milestone 2: Web Interface
+### Web Interface
 
 #### Starting the Web Server
 
@@ -277,7 +277,7 @@ The web server provides the following API endpoints:
 
 #### Architecture
 
-Milestone 2 maintains **modular separation** between components:
+The web interface maintains **modular separation** between components:
 
 - **Frontend** ([static/](static/))
   - [index.html](static/index.html) - User interface
@@ -303,10 +303,10 @@ wordbiter/
 ├── src/
 │   └── wordbiter/           # Main package (core solver)
 │       ├── __init__.py      # Package initialization
-│       ├── main.py          # CLI interface (Milestone 1)
+│       ├── main.py          # CLI interface
 │       ├── word_finder.py   # Core solving algorithm
 │       └── dictionary.py    # Dictionary loading utilities
-├── static/                  # Web frontend (Milestone 2)
+├── static/                  # Web frontend
 │   ├── index.html           # Web interface HTML
 │   ├── style.css            # Styling
 │   └── script.js            # Client-side JavaScript
@@ -319,11 +319,11 @@ wordbiter/
 │   ├── scrabble_words.txt
 │   ├── words_alpha.txt
 │   └── mit_words.txt
-├── app.py                   # Flask web server (Milestone 2)
-├── run.py                   # CLI entry point (Milestone 1)
+├── app.py                   # Flask web server
+├── run.py                   # CLI entry point
 ├── run_tests.sh             # Test runner
 ├── setup.py                 # Package setup
-├── requirements.txt         # Web dependencies (Milestone 2)
+├── requirements.txt         # Web dependencies
 ├── README.md                # This file
 └── LICENSE                  # License information
 ```
