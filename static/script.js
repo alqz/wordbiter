@@ -6,6 +6,7 @@
 // DOM elements
 const form = document.getElementById('tiles-form');
 const solveButton = document.getElementById('solve-button');
+const clearButton = document.getElementById('clear-button');
 const resultsSection = document.getElementById('results-section');
 const errorSection = document.getElementById('error-section');
 const loadingSection = document.getElementById('loading-section');
@@ -193,11 +194,38 @@ async function handleSubmit(event) {
 }
 
 /**
+ * Handle clear button click
+ */
+function handleClear() {
+    // Clear tile inputs
+    singleTilesInput.value = '';
+    horizontalTilesInput.value = '';
+    verticalTilesInput.value = '';
+
+    // Reset configuration to defaults
+    minWordLengthInput.value = '3';
+    maxHorizontalInput.value = '8';
+    maxVerticalInput.value = '9';
+    directionSelect.value = 'both';
+
+    // Hide results and errors
+    hideSection(resultsSection);
+    hideSection(errorSection);
+    hideSection(loadingSection);
+
+    // Focus on first input
+    singleTilesInput.focus();
+}
+
+/**
  * Initialize the application
  */
 function init() {
     // Attach form submit handler
     form.addEventListener('submit', handleSubmit);
+
+    // Attach clear button handler
+    clearButton.addEventListener('click', handleClear);
 
     // Auto-uppercase input as user types
     const textInputs = [singleTilesInput, horizontalTilesInput, verticalTilesInput];
