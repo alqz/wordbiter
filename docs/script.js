@@ -163,7 +163,7 @@ async function loadDictionary() {
     }
 
     try {
-        const response = await fetch('/static/scrabble_words.txt');
+        const response = await fetch('scrabble_words.txt');
         if (!response.ok) {
             throw new Error(`Failed to load dictionary: ${response.statusText}`);
         }
