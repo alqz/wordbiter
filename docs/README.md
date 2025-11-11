@@ -1,6 +1,6 @@
-# Word Bites AI Solver - GitHub Pages Version
+# Word Bites Solver - GitHub Pages Version
 
-This is the static web version of the Word Bites AI Solver, ready for GitHub Pages deployment.
+This is the static web version of the Word Bites Solver, ready for GitHub Pages deployment.
 
 ## What's Included
 
@@ -38,7 +38,7 @@ If you haven't already, initialize a git repository and push to GitHub:
 # From the wordbiter root directory
 git init
 git add .
-git commit -m "Add Word Bites AI Solver with GitHub Pages support"
+git commit -m "Add Word Bites Solver with GitHub Pages support"
 git branch -M main
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
 git push -u origin main

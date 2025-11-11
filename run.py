@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Entry point for running Word Bites AI.
+Entry point for running Word Bites.
 """
 
 if __name__ == "__main__":

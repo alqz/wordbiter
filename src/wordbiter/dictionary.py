@@ -1,5 +1,5 @@
 """
-Dictionary loading utilities for Word Bites AI.
+Dictionary loading utilities for Word Bites.
 """
 
 from typing import Set

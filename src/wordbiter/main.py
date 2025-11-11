@@ -1,5 +1,5 @@
 """
-Word Bites AI - Milestone 1
+Word Bites - Milestone 1
 Given a set of tiles (each containing one or more letters), find all valid words.
 """
 
@@ -38,7 +38,7 @@ def display_words(words: List[str], title: str, max_display: int = DEFAULT_DISPL
 def main() -> None:
     """Main function for manual input of game state."""
     # Parse command-line arguments
-    parser = argparse.ArgumentParser(description="Word Bites AI - Find words from tiles")
+    parser = argparse.ArgumentParser(description="Word Bites - Find words from tiles")
     parser.add_argument(
         "--max-horizontal-length",
         type=int,
@@ -73,7 +73,7 @@ def main() -> None:
     args = parser.parse_args()
 
     print("=" * SEPARATOR_WIDTH)
-    print("Word Bites AI - Milestone 1")
+    print("Word Bites - Milestone 1")
     print("=" * SEPARATOR_WIDTH)
 
     # Load dictionary

@@ -1,5 +1,5 @@
 /**
- * Word Bites AI Solver - Frontend JavaScript
+ * Word Bites Solver - Frontend JavaScript
  * Handles form submission, local/remote solving, and results display
  */
 
@@ -144,7 +144,18 @@ function displayWordList(words, listElement, countElement) {
             wordItem.classList.add('long-word');
         }
 
-        wordItem.textContent = word;
+        // Create word text span
+        const wordText = document.createElement('span');
+        wordText.className = 'word-text';
+        wordText.textContent = word;
+
+        // Create letter count span
+        const letterCount = document.createElement('span');
+        letterCount.className = 'letter-count';
+        letterCount.textContent = word.length;
+
+        wordItem.appendChild(wordText);
+        wordItem.appendChild(letterCount);
         listElement.appendChild(wordItem);
     });
 }

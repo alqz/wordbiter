@@ -340,6 +340,9 @@ h3 {
 }
 
 .word-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0.75rem 1.125rem;
     margin-bottom: 0.625rem;
     background: white;
@@ -362,6 +365,24 @@ h3 {
     background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     border-color: #fbbf24;
     color: #92400e;
+}
+
+.word-text {
+    flex: 1;
+}
+
+.letter-count {
+    margin-left: 1rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    min-width: 1.5rem;
+    text-align: right;
+}
+
+.word-item.long-word .letter-count {
+    color: #92400e;
+    opacity: 0.7;
 }
 
 /* Error section */

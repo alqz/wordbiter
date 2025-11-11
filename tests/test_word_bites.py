@@ -1,5 +1,5 @@
 """
-Test cases for Word Bites AI.
+Test cases for Word Bites.
 """
 
 from typing import Dict, List
@@ -10,7 +10,7 @@ from wordbiter.word_finder import solve_word_bites
 def test_word_bites() -> None:
     """Test case with specific tiles."""
     print("=" * 50)
-    print("Word Bites AI - Test Case")
+    print("Word Bites - Test Case")
     print("=" * 50)
 
     # Load dictionary

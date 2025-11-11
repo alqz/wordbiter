@@ -1,5 +1,5 @@
 """
-Core word-finding algorithm for Word Bites AI.
+Core word-finding algorithm for Word Bites.
 """
 
 from typing import Dict, List, Set, Tuple

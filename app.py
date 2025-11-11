@@ -1,5 +1,5 @@
 """
-Word Bites AI - Milestone 2
+Word Bites - Milestone 2
 Flask web server providing a browser-based interface for the Word Bites solver.
 This module acts as a thin API layer over the core solver logic.
 """

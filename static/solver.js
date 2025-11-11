@@ -1,5 +1,5 @@
 /**
- * Word Bites AI Solver - Core Algorithm (JavaScript Port)
+ * Word Bites Solver - Core Algorithm (JavaScript Port)
  * Ported from Python implementation in src/wordbiter/word_finder.py
  */
 

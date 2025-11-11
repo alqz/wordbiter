@@ -1,4 +1,4 @@
-# Word Bites AI Solver
+# Word Bites Solver
 
 A Python-based solver for the Word Bites word puzzle game that finds all valid words that can be formed from a given set of letter tiles.
 
@@ -160,7 +160,7 @@ This will find words like CALKINGS, NATURALS, BRACINGLY, MEGABUCKS, and many oth
 
 ```
 ==================================================
-Word Bites AI - Milestone 1
+Word Bites - Milestone 1
 ==================================================
 
 Loading dictionary...
